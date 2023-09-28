@@ -108,6 +108,8 @@ export async function callWebHook(
   const webhook =
     client?.config.webhook || req.serverOptions.webhook.url || false;
   if (webhook) {
+    console.log('>>>>> functions.ts:2255 > callWebHook webhook', webhook);
+    console.log('>>>>> functions.ts:2255 > callWebHook configs', client.config);
     if (req.serverOptions.webhook.autoDownload)
       await autoDownload(client, req, data);
     try {
