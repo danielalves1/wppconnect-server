@@ -2241,6 +2241,8 @@ export async function chatWoot(req: Request, res: Response) {
     if (await client.isConnected()) {
       const event = req.body.event;
 
+      console.log('>>>>> deviceController.ts:2244', req.body);
+
       if (
         event == 'conversation_status_changed' ||
         event == 'conversation_resolved' ||
@@ -2250,7 +2252,7 @@ export async function chatWoot(req: Request, res: Response) {
           .status(200)
           .json({ status: 'success', message: 'Success on receive chatwoot' });
       }
-
+      console.log('>>>>> deviceController.ts:2255 > config', client.config);
       const {
         message_type,
         phone = req.body.conversation.meta.sender.phone_number.replace('+', ''),
