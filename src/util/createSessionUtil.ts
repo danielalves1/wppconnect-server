@@ -225,6 +225,10 @@ export default class CreateSessionUtil {
   async listenMessages(client: WhatsAppServer, req: Request) {
     await client.onMessage(async (message: any) => {
       eventEmitter.emit(`mensagem-${client.session}`, client, message);
+      console.log(
+        `createSessionUtils > listenMessages > message \n${req.serverOptions.webhook}`
+      );
+      console.log('createSessionUtils > listenMessages > message', message);
       callWebHook(client, req, 'onmessage', message);
       if (message.type === 'location')
         client.onLiveLocation(message.sender.id, (location) => {
